@@ -89,3 +89,4 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 - 0.0.1 Initial version
 - 0.0.2 Added bootstrapper function
 - 0.0.3 bootstrapper function inside the task
+- 0.0.4 Fixed errors and tests

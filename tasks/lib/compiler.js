@@ -173,7 +173,7 @@ var Compiler = function(grunt, options, cwd) {
       if (p1.indexOf('.') >= 0) {
         var pathToVariable = p1;
         return pathToVariable.split('.').reduce(function(prev, curr) {
-          return (prev ? prev[curr] : undefined)
+          return (prev ? prev[curr] : undefined);
         }, translations || this);
       }
       return translations[p1];

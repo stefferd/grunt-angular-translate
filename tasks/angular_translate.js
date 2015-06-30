@@ -50,7 +50,6 @@ module.exports = function(grunt) {
 
       for (var module in modules) {
         compiled.push(compiler.compile(module, modules[module], translations));
-        //compiled.push(compiler.compile(module, modules[module], []));
       }
 
       if (options.append){
