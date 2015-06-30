@@ -1,0 +1,49 @@
+{
+  "name": "grunt-angular-translate",
+  "description": "Language specific rendering of the templates for angular.",
+  "version": "0.0.1",
+  "homepage": "https://github.com/stefferd/grunt-angular-translate",
+  "author": {
+    "name": "Stef van den Berg",
+    "email": "stef@dexperts.nl",
+    "url": "http://www.dexperts.nl"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/stefferd/grunt-angular-translate.git"
+  },
+  "bugs": {
+    "url": "https://github.com/stefferd/grunt-angular-translate/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/stefferd/grunt-angular-translate/blob/master/LICENSE-MIT"
+    }
+  ],
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "dependencies": {
+    "html-minifier": "^0.7.2"
+  },
+  "devDependencies": {
+    "grunt-contrib-jshint": "^0.9.2",
+    "grunt-contrib-clean": "^0.5.0",
+    "grunt-contrib-nodeunit": "^0.3.3",
+    "grunt": "~0.4.5"
+  },
+  "peerDependencies": {
+    "grunt": "~0.4.5"
+  },
+  "keywords": [
+    "gruntplugin",
+    "angular",
+    "translate",
+    "translation",
+    "templates"
+  ]
+}

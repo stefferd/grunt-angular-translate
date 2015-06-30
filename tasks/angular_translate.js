@@ -1,0 +1,77 @@
+/*
+ * grunt-angular-translate
+ * https://github.com/stefferd/grunt-angular-translate
+ *
+ * Copyright (c) 2015 Stef van den Berg
+ * Licensed under the MIT license.
+ */
+
+'use strict';
+
+var Compiler  = require('./lib/compiler');
+var Appender  = require('./lib/appender');
+var fs        = require('fs');
+
+module.exports = function(grunt) {
+
+  // Please see the Grunt documentation for more information regarding task
+  // creation: http://gruntjs.com/creating-tasks
+
+  grunt.registerMultiTask('angular_translate', 'Language specific rendering of the templates for angular.', function() {
+    // Merge task-specific and/or target-specific options with these defaults.
+    var options = this.options({
+      angular:    'angular',
+      bootstrap:  bootstrapper,
+      concat:     null,
+      htmlmin:    {},
+      module:     this.target,
+      prefix:     '',
+      source:     function(source) { return source; },
+      standalone: false,
+      url:        function(path) { return path; },
+      usemin:     null,
+      append:     false
+    });
+
+    grunt.verbose.writeflags(options, 'Options');
+    // Iterate over all specified file groups.
+    this.files.forEach(function(file) {
+      if (!file.src.length) {
+        grunt.log.warn('No templates found');
+      }
+      var compiler  = new Compiler(grunt, options, file.cwd);
+      var appender  = new Appender(grunt);
+      var translations = compiler.languages(file.languages);
+      var modules   = compiler.modules(file.src);
+      var compiled  = [];
+
+      for (var module in modules) {
+        compiled.push(compiler.compile(module, modules[module], translations));
+        //compiled.push(compiler.compile(module, modules[module], []));
+      }
+
+      if (options.append){
+        fs.appendFileSync(file.dest, compiled.join('\n'));
+        grunt.log.writeln('File ' + file.dest.cyan + ' updated.');
+      }
+      else{
+        grunt.file.write(file.dest, compiled.join('\n'));
+        grunt.log.writeln('File ' + file.dest.cyan + ' created.');
+      }
+
+
+      if (options.usemin) {
+        if (appender.save('generated', appender.concatUseminFiles(options.usemin, file))) {
+          grunt.log.writeln('Added ' + file.dest.cyan + ' to ' + ('<!-- build:js ' + options.usemin + ' -->').yellow);
+        }
+      }
+
+      if (options.concat) {
+        if (appender.save(options.concat, appender.concatFiles(options.concat, file))) {
+          grunt.log.writeln('Added ' + file.dest.cyan + ' to ' + ('concat:' + options.concat).yellow);
+        }
+      }
+    });
+  });
+
+};
