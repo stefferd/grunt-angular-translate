@@ -1,7 +1,7 @@
 {
   "name": "grunt-angular-translates",
   "description": "Language specific rendering of the templates for angular.",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "homepage": "https://github.com/stefferd/grunt-angular-translate",
   "author": {
     "name": "Stef van den Berg",

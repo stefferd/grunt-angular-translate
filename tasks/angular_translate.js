@@ -16,11 +16,11 @@ module.exports = function(grunt) {
 
   // Please see the Grunt documentation for more information regarding task
   // creation: http://gruntjs.com/creating-tasks
-  var bootstrapper = function(module, script, options) {
-    return options.angular+".module('"+module+"'"+(options.standalone ? ', []' : '')+").run(['$templateCache', function($templateCache) {\n"+script+"\n}]);\n";
-  };
 
   grunt.registerMultiTask('angular_translate', 'Language specific rendering of the templates for angular.', function() {
+    var bootstrapper = function(module, script, options) {
+      return options.angular+".module('"+module+"'"+(options.standalone ? ', []' : '')+").run(['$templateCache', function($templateCache) {\n"+script+"\n}]);\n";
+    };
     // Merge task-specific and/or target-specific options with these defaults.
     var options = this.options({
       angular:    'angular',
